@@ -1,0 +1,5 @@
+name: rf_baseline
+_target_: sleepstage.models.baseline_rf.RandomForestBaseline
+n_estimators: 200
+max_depth: null
+classifier: random_forest  # lightgbm also supported

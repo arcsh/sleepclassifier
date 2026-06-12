@@ -1,0 +1,12 @@
+defaults:
+  - data: sleep_edf_sc
+  - model: cnn_bilstm
+  - training: default
+  - _self_
+
+seed: 42
+n_folds: 5
+fold_only: null  # set to int to train a single fold (orchestrator use)
+force_seed_subdir: false
+experiment_name: ${model.name}_${data.name}
+output_dir: experiments/${experiment_name}

@@ -1,0 +1,14 @@
+lr: 1.0e-3
+weight_decay: 1.0e-4
+batch_size: 64
+max_epochs: 50
+patience: 7
+loss: weighted_ce  # weighted_ce | focal
+focal_gamma: 2.0
+scheduler: cosine  # cosine | plateau
+gradient_clip_val: 5.0
+accelerator: auto  # auto | mps | cpu | gpu
+precision: 32-true  # 32-true | bf16-mixed | auto (16-mixed is CUDA-only)
+num_workers: 2
+sequence_length: 20
+n_seeds: 3

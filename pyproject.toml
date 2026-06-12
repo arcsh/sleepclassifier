@@ -1,0 +1,79 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sleepstage"
+version = "0.1.0"
+description = "Sleep stage classification from EEG (Sleep-EDF)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Sleep Stage Classification Project" }]
+dependencies = [
+    "mne>=1.6",
+    "torch>=2.1",
+    "pytorch-lightning>=2.1",
+    "hydra-core>=1.3",
+    "omegaconf>=2.3",
+    "scikit-learn>=1.3",
+    "lightgbm>=4.0",
+    "numpy>=1.24",
+    "scipy>=1.11",
+    "pandas>=2.0",
+    "h5py>=3.9",
+    "matplotlib>=3.8",
+    "seaborn>=0.13",
+    "tensorboard>=2.14",
+    "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "black>=24.0",
+    "ruff>=0.1",
+    "mypy>=1.7",
+    "pre-commit>=3.5",
+    "types-PyYAML",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+exclude = ["large-scale-test"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "D"]
+ignore = ["D100", "D104"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D"]
+"scripts/**" = ["D", "E402"]
+"notebooks/**" = ["I", "F401"]
+"scripts/watchdog.py" = ["E731"]
+"src/sleepstage/models/**" = ["D102", "D107"]
+"src/sleepstage/training/lightning_module.py" = ["D102", "D107"]
+"src/sleepstage/training/losses.py" = ["D102", "D107"]
+"src/sleepstage/data/dataset.py" = ["D105"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = false
+warn_unused_configs = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

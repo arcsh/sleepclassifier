@@ -1,0 +1,48 @@
+# Data and experiments
+data/
+experiments/
+checkpoints/
+outputs/
+
+# Local scratch
+*.local.md
+mac-logs/
+
+# Runtime logs (keep FINAL_STATUS.md if added explicitly)
+logs/*.log
+logs/sweep_pid.txt
+logs/pipeline_pid.txt
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environments
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# TensorBoard
+runs/
+lightning_logs/

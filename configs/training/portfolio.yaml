@@ -1,0 +1,14 @@
+# @package training
+# Portfolio training defaults — short runs for laptop-scale compute (~8 h budget).
+# Use: python scripts/train.py training=portfolio ...
+
+defaults:
+  - default
+
+max_epochs: 15
+patience: 3
+batch_size: 64
+accelerator: auto
+precision: 32-true
+num_workers: 0
+n_seeds: 1

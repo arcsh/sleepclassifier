@@ -1,0 +1,10 @@
+name: attnsleep
+_target_: sleepstage.models.attnsleep.AttnSleep
+n_channels: 1
+n_classes: 5
+sample_rate: 100
+sequence_length: 20
+cnn_channels: [64, 128]
+kernel_sizes: [3, 15, 63]
+n_heads: 4
+dropout: 0.3

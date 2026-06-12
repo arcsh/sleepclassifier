@@ -1,0 +1,17 @@
+name: sleep_edf_sc
+raw_dir: data/raw
+processed_dir: data/processed
+interim_dir: data/interim
+subset: sc
+channel_variant: single  # single | multi
+channels_single:
+  - EEG Fpz-Cz
+channels_multi:
+  - EEG Fpz-Cz
+  - EEG Pz-Oz
+  - EOG horizontal
+bandpass_low: 0.3
+bandpass_high: 35.0
+epoch_length_sec: 30
+wake_padding_min: 30
+n_folds: 5

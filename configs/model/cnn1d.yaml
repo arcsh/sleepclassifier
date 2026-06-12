@@ -1,0 +1,8 @@
+name: cnn1d
+_target_: sleepstage.models.cnn1d.CNN1D
+n_channels: 1
+n_classes: 5
+sample_rate: 100
+channels: [64, 128, 128]
+kernel_size: 50
+dropout: 0.3

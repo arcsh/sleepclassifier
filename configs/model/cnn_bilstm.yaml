@@ -1,0 +1,11 @@
+name: cnn_bilstm
+_target_: sleepstage.models.cnn_bilstm.CNNBiLSTM
+n_channels: 1
+n_classes: 5
+sample_rate: 100
+sequence_length: 20
+cnn_channels: [64, 128, 128]
+cnn_kernel_size: 50
+lstm_hidden_size: 128
+lstm_num_layers: 2
+dropout: 0.3
