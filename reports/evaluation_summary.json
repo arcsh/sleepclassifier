@@ -1,0 +1,14 @@
+{
+  "demo_cnn1d": {
+    "macro_f1_mean": 0.10976262524808218,
+    "macro_f1_std": 0.03387377798299048,
+    "kappa_mean": -0.007472151073336579,
+    "kappa_std": 0.00907282627929032
+  },
+  "demo_attnsleep": {
+    "macro_f1_mean": 0.06704761904761905,
+    "macro_f1_std": 0.011729374718735737,
+    "kappa_mean": 0.0,
+    "kappa_std": 0.0
+  }
+}
