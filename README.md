@@ -16,7 +16,7 @@ Automated sleep staging on 30-second EEG epochs from the [Sleep-EDF Database Exp
 
 CNN1D beats RF by **+0.09 macro-F1** on the same Sleep-EDF SC subset. AttnSleep was skipped after MPS OOM (CPU fallback estimated 18+ h/epoch); see [`logs/FINAL_STATUS.md`](logs/FINAL_STATUS.md).
 
-Live table: [`RESULTS.md`](RESULTS.md) · Blog: [arcsh.github.io/blog/sleeptracker](https://arcsh.github.io/blog/sleeptracker) · Writeup: [`reports/writeup.md`](reports/writeup.md)
+Live table: [`RESULTS.md`](RESULTS.md) · Blog: [arcsh.github.io/blog/sleepclassifier](https://arcsh.github.io/blog/sleepclassifier) · Writeup: [`reports/writeup.md`](reports/writeup.md)
 
 ## Non-goals
 
@@ -65,7 +65,7 @@ large-scale-test/ Archived full research sweep (60 combos)
 
 ## CI
 
-[![CI](https://github.com/arcsh/sleeptracker/actions/workflows/ci.yml/badge.svg)](https://github.com/arcsh/sleeptracker/actions/workflows/ci.yml)
+[![CI](https://github.com/arcsh/sleepclassifier/actions/workflows/ci.yml/badge.svg)](https://github.com/arcsh/sleepclassifier/actions/workflows/ci.yml)
 
 Runs `ruff`, `black`, `mypy`, and `pytest` on every push.
 

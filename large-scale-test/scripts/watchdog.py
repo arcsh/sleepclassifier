@@ -52,7 +52,7 @@ SKIP_LOG = LOGS / "skipped_records.log"
 RSYNC_DEST = RAW_DIR / "sleep-cassette"
 MNE_RAW = RAW_DIR / "sc"
 
-CAFFEINATE_ENV = "SLEEPTRACKER_WATCHDOG_CAFFEINATED"
+CAFFEINATE_ENV = "SLEEPCLASSIFIER_WATCHDOG_CAFFEINATED"
 
 # ponytail: injectable for dry-run / tests (fake clock, no 5min sleeps)
 _clock: Callable[[], float] = time.monotonic
