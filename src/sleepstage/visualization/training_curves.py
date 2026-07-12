@@ -7,14 +7,12 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 
-from sleepstage.constants import STAGE_NAMES
 from sleepstage.visualization.style import (
     ACCENT,
     ACCENT_2,
     apply_style,
     bar_colors_for_models,
     prettify_model_name,
-    stage_color,
     stage_colors_list,
     style_axes,
 )
@@ -29,10 +27,27 @@ def plot_training_curves(
     """Plot loss and macro-F1 curves."""
     apply_style()
     epochs = range(1, len(train_losses) + 1)
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 4))
+    fig, _ = plt.subplots(1, 2, figsize=(11, 4))
+    ax1, ax2 = fig.axes[0], fig.axes[1]
 
-    ax1.plot(epochs, train_losses, label="Train", color=ACCENT, linewidth=2, marker="o", markersize=4)
-    ax1.plot(epochs, val_losses, label="Val", color=ACCENT_2, linewidth=2, marker="o", markersize=4)
+    ax1.plot(
+        epochs,
+        train_losses,
+        label="Train",
+        color=ACCENT,
+        linewidth=2,
+        marker="o",
+        markersize=4,
+    )
+    ax1.plot(
+        epochs,
+        val_losses,
+        label="Val",
+        color=ACCENT_2,
+        linewidth=2,
+        marker="o",
+        markersize=4,
+    )
     ax1.set_xlabel("Epoch")
     ax1.set_ylabel("Loss")
     ax1.legend()
@@ -48,7 +63,12 @@ def plot_training_curves(
     ax2.set_title("Validation macro-F1")
     style_axes(ax2)
 
-    fig.suptitle("CNN1D training — early stopping on macro-F1", fontsize=13, fontweight="600", y=1.02)
+    fig.suptitle(
+        "CNN1D training — early stopping on macro-F1",
+        fontsize=13,
+        fontweight="600",
+        y=1.02,
+    )
     output_path.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(output_path)
     plt.close(fig)
@@ -66,11 +86,20 @@ def plot_class_distribution(
     after = [counts_after[s] for s in stages]
     after_pct = [100 * v / max(sum(after), 1) for v in after]
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4.8), gridspec_kw={"width_ratios": [1.15, 1]})
+    fig, _ = plt.subplots(1, 2, figsize=(12, 4.8), gridspec_kw={"width_ratios": [1.15, 1]})
+    ax1, ax2 = fig.axes[0], fig.axes[1]
     x = np.arange(len(stages))
     w = 0.36
 
-    ax1.bar(x - w / 2, before, w, label="Before trim", color="#8a96a3", alpha=0.55, edgecolor="white")
+    ax1.bar(
+        x - w / 2,
+        before,
+        w,
+        label="Before trim",
+        color="#8a96a3",
+        alpha=0.55,
+        edgecolor="white",
+    )
     ax1.bar(
         x + w / 2,
         after,
@@ -118,7 +147,8 @@ def plot_model_comparison(
     colors = bar_colors_for_models(model_names)
     x = np.arange(len(labels))
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10.5, 4.5))
+    fig, _ = plt.subplots(1, 2, figsize=(10.5, 4.5))
+    ax1, ax2 = fig.axes[0], fig.axes[1]
 
     for ax, means, stds, ylabel, title in [
         (ax1, macro_f1_means, macro_f1_stds, "Macro-F1", "Macro-F1 (higher is better)"),
@@ -165,17 +195,22 @@ def plot_per_subject_f1(
     output_path: Path,
 ) -> None:
     """Per-subject macro-F1 distribution."""
-    import seaborn as sns
-
     apply_style()
     scores = np.array(list(per_subject_scores.values()))
     fig, ax = plt.subplots(figsize=(7, 4.5))
     parts = ax.violinplot(scores, positions=[0], widths=0.55, showmeans=True, showmedians=True)
-    for body in parts["bodies"]:
+    for body in parts["bodies"]:  # type: ignore[attr-defined]
         body.set_facecolor(ACCENT)
         body.set_alpha(0.35)
     ax.scatter(np.zeros(len(scores)), scores, color=ACCENT, alpha=0.45, s=22, zorder=3)
-    ax.axhline(np.mean(scores), color=ACCENT_2, linestyle="--", linewidth=1, label=f"Mean {np.mean(scores):.3f}")
+    mean_f1 = float(np.mean(scores))
+    ax.axhline(
+        mean_f1,
+        color=ACCENT_2,
+        linestyle="--",
+        linewidth=1,
+        label=f"Mean {mean_f1:.3f}",
+    )
     ax.set_xticks([])
     ax.set_ylabel("Macro-F1")
     ax.set_title("Per-subject macro-F1 on held-out nights")

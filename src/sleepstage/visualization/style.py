@@ -67,15 +67,18 @@ def apply_style() -> None:
 
 
 def stage_color(stage: str) -> str:
+    """Return hex color for a sleep-stage label."""
     return STAGE_COLORS.get(stage, ACCENT)
 
 
 def stage_colors_list(stages: list[str] | None = None) -> list[str]:
+    """Return colors for ``stages`` (defaults to all ``STAGE_NAMES``)."""
     names = stages or STAGE_NAMES
     return [stage_color(s) for s in names]
 
 
 def prettify_model_name(name: str) -> str:
+    """Map experiment / config ids to short display names."""
     mapping = {
         "cnn1d": "CNN1D",
         "rf_baseline": "Random Forest",
@@ -89,6 +92,7 @@ def prettify_model_name(name: str) -> str:
 
 
 def bar_colors_for_models(names: list[str]) -> list[str]:
+    """Return bar colors aligned with ``names``."""
     out = []
     for n in names:
         key = n.lower().replace("poc_", "").replace("_sleep_edf_sc", "")
@@ -97,6 +101,7 @@ def bar_colors_for_models(names: list[str]) -> list[str]:
 
 
 def style_axes(ax: plt.Axes, *, hide_top_right: bool = True) -> None:
+    """Apply light axis chrome (optional hide top/right spines)."""
     if hide_top_right:
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)

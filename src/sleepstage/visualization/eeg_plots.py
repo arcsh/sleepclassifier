@@ -29,7 +29,12 @@ def plot_example_epochs_per_class(
         ax.set_xlim(0, 30)
         style_axes(ax)
     axes_list[-1].set_xlabel("Time (s)")
-    fig.suptitle("Example 30-second EEG epochs by sleep stage", fontsize=14, fontweight="600", y=1.01)
+    fig.suptitle(
+        "Example 30-second EEG epochs by sleep stage",
+        fontsize=14,
+        fontweight="600",
+        y=1.01,
+    )
     fig.tight_layout()
     output_path.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(output_path)

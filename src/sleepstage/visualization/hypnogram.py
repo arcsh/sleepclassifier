@@ -21,7 +21,14 @@ def plot_hypnogram_overlay(
     apply_style()
     time_hours = np.arange(len(true_labels)) * epoch_length_sec / 3600.0
     fig, ax = plt.subplots(figsize=(13, 3.8))
-    ax.step(time_hours, true_labels, where="post", label="Ground truth", linewidth=1.6, color=ACCENT)
+    ax.step(
+        time_hours,
+        true_labels,
+        where="post",
+        label="Ground truth",
+        linewidth=1.6,
+        color=ACCENT,
+    )
     ax.step(
         time_hours,
         pred_labels,
